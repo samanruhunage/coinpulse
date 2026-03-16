@@ -11,9 +11,9 @@ const page = async () => {
     <main className="main-container">
       <section className="home-grid">
         <div className=' w-4xl mr-2 -mt-185'>
-          <Suspense fallback={<div>Loading Overview...</div>}>
+           <Suspense fallback={<div>Loading Overview...</div>}>
             <CoinOverview />
-          </Suspense>
+           </Suspense>
         </div>
 
         <div className="ml-64">

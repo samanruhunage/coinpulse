@@ -39,4 +39,4 @@ const DataTable =<T,> ({ columns, data, rowKey, tableClassName, headerRowClassNa
   )
 }
 
-export default DataTable
+export default DataTable ;

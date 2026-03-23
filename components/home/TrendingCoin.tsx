@@ -49,7 +49,7 @@ const columns : DataTableColumn<TrendingCoin>[] = [
     }
 ]    
     return (
-        <div id="trending-coins" className="ml-20 p-1 w-lg">
+        <div id="trending-coins" className="p-1 w-fit">
             <h4>Trending Coins</h4>            
             <DataTable 
                 data={trendingCoins.coins.slice(0, 8) || []} 

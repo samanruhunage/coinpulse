@@ -18,18 +18,17 @@ const CandleStickChart = ({
     const chartRef = useRef<IChartApi>(null);
     const candleSeriesRef = useRef<ISeriesApi<'Candlestick'> | null>(null); 
 
-    const [loading, setLoading] = useState(false);
     const [period, setPeriod] = useState(initialPeriod); 
     const [ohlcData, setOhlcData] = useState<OHLCData[]>(data ?? []); 
     const [ isPending, startTransition ] = useTransition(); 
 
     const fetchOHLCData = async(selectedPeriod : Period ) => {
         try{
-            const period = PERIOD_CONFIG[selectedPeriod];
+            const config = PERIOD_CONFIG[selectedPeriod];
 
             const newData = await fetcher<OHLCData[]>(`/coins/${coinId}/ohlc`, {
                 vs_currency : 'usd',
-                days : period.days, 
+                days : config.days, 
                 precision : 'full' 
             })
                 setOhlcData(newData ?? [])
@@ -78,7 +77,7 @@ const CandleStickChart = ({
             candleSeriesRef.current = null;
         }
 
-    }, [height, period, ohlcData])
+    }, [height, period])
 
     useEffect(()=>{
         if(!candleSeriesRef.current) return ; 
@@ -108,7 +107,7 @@ const CandleStickChart = ({
                         key={value} 
                         className={period === value ? 'config-button-active' : 'config-button'} 
                         onClick={()=>handlePeriodChange(value)} 
-                        disabled={loading}>
+                        disabled={isPending}>
                         {label}
                     </button>
                 ) )}

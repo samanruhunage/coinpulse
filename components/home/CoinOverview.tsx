@@ -7,7 +7,7 @@ import CandleStickChart from "../ui/CandleStickChart"
 
 const CoinOverview = async () => {
     try {
-          let [ coin, coinOHLCData ] = await Promise.all([
+          const [ coin, coinOHLCData ] = await Promise.all([
             fetcher<CoinDetailsData>('/coins/bitcoin', {
             dex_pair_format : 'symbol'
             }),
@@ -18,19 +18,19 @@ const CoinOverview = async () => {
         })            
     ]); 
     return (
-        <CandleStickChart data={coinOHLCData} coinId='bitcoin'  >
-            <div id="coin-overveiw">
-                <div className="header pt-2!">
-                    <div>
-                        <Image src={coin?.image?.large} width={56} height={56} alt={coin.name} />
-                    </div>
-                    <div className="info">
-                        <p>{coin?.name} / {coin?.symbol.toUpperCase()}</p>
-                        <h1>{formatCurrency(coin.market_data.current_price.usd)}</h1>
-                    </div>
-                </div>
-            </div>
-        </CandleStickChart>
+        <div id='coin-overview'>
+            <CandleStickChart data={coinOHLCData} coinId='bitcoin'>                 
+                    <div className="header pt-2">
+                        <div>
+                            <Image src={coin?.image?.large ?? ''} width={56} height={56} alt={coin.name} />
+                        </div>
+                        <div className="info">
+                            <p>{coin?.name} / {coin?.symbol?.toUpperCase()}</p>
+                            <h1>{formatCurrency(coin?.market_data?.current_price?.usd)}</h1>
+                        </div>
+                    </div>               
+            </CandleStickChart>
+        </div>
     )
     }catch(error) { 
         console.error('Error fetching coin overview:', error); 

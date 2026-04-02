@@ -17,24 +17,6 @@ export const CoinOverviewFallback =() =>{
     )
 }
 
-// export const TrendingCoinFallback = () =>{
-//     const columns = [
-//         {
-//             header : "name", 
-//             cell :() => (
-//                 <div className="name-link">
-//                     <div className="name-image skelton" />
-//                     <div className="name-line skelton"/>
-//                 </div>
-//             )
-//         }
-//     ]
-//     return(
-//         <>
-//             {columns}
-//         </>
-//     )
-// }
 
 export const TrendingCoinFallback = () => {
   return (

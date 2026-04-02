@@ -23,7 +23,8 @@ export async function fetcher<T>(
                     "x-cg-demo-api-key": API_KEY!,
                     "Content-Type": "application/json"
             } as Record<string, string>, 
-            next : { revalidate }
+            next : { revalidate }, 
+            
         }) ;
         if(!response.ok){
             const errorBody : CoinGeckoErrorBody = await response.json().catch(()=>({} as CoinGeckoErrorBody));

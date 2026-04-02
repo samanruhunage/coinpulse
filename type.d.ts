@@ -3,10 +3,7 @@ interface DataTableProps {
 
 }type OHLCData = [number, number, number, number, number];
 
-interface NextPageProps {
-  params: Promise<{ [key: string]: string }>;
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
-}
+
 
 interface CandlestickChartProps {
   data?: OHLCData[];
@@ -99,6 +96,12 @@ interface SearchCoin {
   };
 }
 
+interface CoinPaginationProps {
+  currentPage : number, 
+  totalPages : number,
+  hasMorePages : boolean
+}
+
 // Chart Section Props (used in ChartSection.tsx)
 interface ChartSectionProps {
   coinData: {
@@ -111,6 +114,11 @@ interface ChartSectionProps {
   };
   coinOHLCData: OHLCData[];
   coinId: string;
+}
+
+interface Pagination{
+  Params : Promise<{[key : string] : string}>
+  searchParams : Promise<{[key : string] : string}>
 }
 
 interface TopGainersLosers {
@@ -289,7 +297,7 @@ type PaginationLinkProps = {
   size?: ButtonSize;
 } & React.ComponentProps<'a'>;
 
-interface Pagination {
+interface CoinPagination {
   currentPage: number;
   totalPages: number;
   hasMorePages: boolean;
